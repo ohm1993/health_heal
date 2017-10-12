@@ -22,12 +22,12 @@ angular.module('myApp.view1', ['ngRoute'])
                             // User is signed in.
                             if (user.email == "admin123@gmail.com") {
                                 toastr.success('Loged in as Admin', 'Success!', {
-                                    timeout: 5000
+                                    timeout: 1000
                                 });
                                 $location.path('/admin');
                             } else {
                                 toastr.success('Login  successfully', 'Success!', {
-                                    timeout: 5000
+                                    timeout: 1000
                                 });
                                 $location.path('/client');
                             }
@@ -43,7 +43,7 @@ angular.module('myApp.view1', ['ngRoute'])
                     var errorMessage = error.message;
                     vm.dataLoading = false;
                     toastr.error(errorMessage, 'Error', {
-                        timeOut: 5000
+                        timeOut: 2000
                     });
                     // Error Handling
                 });

@@ -29,6 +29,7 @@ app.controller('ClientController', function($firebaseObject, $firebaseArray,toas
             }
         });  
   } else {
+         $location.path('/login');
          console.log("user not logged in");
   }
 });

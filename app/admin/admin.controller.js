@@ -17,6 +17,7 @@ angular.module('myApp.view4', ['ngRoute'])
                     $scope.user_name = data.firstname;
                 });
             } else {
+                $location.path('/login');
                 console.log("user not logged in");
             }
         });
