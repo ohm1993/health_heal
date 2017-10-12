@@ -1,0 +1,105 @@
+<div class="navbar-wrapper">
+    <div class="container-fluid">
+        <nav class="navbar navbar-fixed-top">
+            <div class="container">
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#" class="">Home</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav pull-right">
+                        <li><a class="">Signed in as {{user_name}}</a></li>
+                        <li class=""><a href="" ng-click="logout()">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="row" style="margin-top:60px">
+    <div class="col-xs-6 col-sm-10 col-md-9">
+        <table class="table table-responsive table-bordered table-striped" style="margin: 1rem;">
+            <thead>
+                <tr>
+                    <th class="col-md-1">User ID</th>
+                    <th class="col-md-1">Time</th>
+                    <th class="col-md-2">Email ID</th>
+                    <th class="col-md-2">Subject</th>
+                    <th class="col-md-3">Message</th>
+                    <th class="col-md-2">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in filteredList | filter : paginate">
+                    <td>{{item.ID}}</td>
+                    <td>{{item.createdAt | date:'mediumDate'}}</td>
+                    <td>{{item.username}}</td>
+                    <td>{{item.subject}}</td>
+                    <td>{{item.message}}</td>
+                    <td>
+                       <button type="button" class="btn btn-primary" ng-if= "item.status == 0">New</button>
+                        <button type="button" class="btn btn-primary" ng-if="item.status > 0 ">Old</button>
+                       <!--<button type="button" class="btn btn-primary" ng-if="item.status > 0">Old</button>-->
+                       <button type="button" class="btn btn-success" ng-click="showchatbox(item)">Reply</button>
+                   </td>
+                </tr>
+            </tbody>
+       </table>
+        <div class="pull-right">
+            <pagination total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true" items-per-page="numPerPage" class="pagination-sm">
+            </pagination>
+        </div> 
+    </div>
+     <div class="col-md-3" ng-show="chatbox">
+        <div class="panel panel-primary" style="margin: 18px 0px 0px 0px;">  
+            <div class="panel-heading" style="padding:0 0 0 8px;">
+                <span class="glyphicon glyphicon-user"></span>
+                <h6 class="panel-title" style="display:inline;">{{firstname}}</h6>
+                <div class="btn-group btn-group-xs pull-right">
+                  <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-lock"></span></button>
+                  <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-cog"></span></button>
+                  <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-remove"></span></button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body" style="padding:0 4px;">
+                <div class="row">
+                  <div class="col-xs-12" style="max-height:300px;max-width:100%;overflow-y:auto;overflow-x:hidden;">
+                    <table class="table table-hover table-condensed" style="">
+                      <!--<tr ng-hide="chatMessages.length === 0" ng-repeat="chat in chatMessages | orderBy:origDt | reverse"
+                          style="min-width:100%;max-width:100%;width:100%;">-->
+                        <tr ng-hide="chatMessages.length === 0" ng-repeat="chat in chatMessages"
+                          style="min-width:100%;max-width:100%;width:100%;">
+
+                            <!--<td><img src="{{chat.icon}}" alt="" style="margin-top:8px;"/></td>-->
+                            <td>
+                              <h6>{{chat.usr_username}}</h6>
+                            </td>
+                            <td>
+                            <p class="word-wrap:break-word"><small>{{chat.usr_message}}</small></p>
+                            </td>
+                        </tr>
+                      <tr ng-show="chatMessages.length === 0">
+                        <td>
+                          <p>Nothin' here. <strong>Say something!</strong></p>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <form>
+                  <div class="input-group input-group-sm">
+                    <span class="input-group-addon">
+                      <img src="http://placehold.it/16x16" alt="" />
+                    </span>
+                    <input type="text" class="form-control" ng-model="newChatMsg" placeholder="..."/>
+                    <span class="input-group-btn">
+                      <button class="btn btn-primary" type="submit" ng-click="addChat()">Send</button>
+                    </span>
+                  </div>
+                </form>
+            </div>
+        </div> 
+     </div>   
+ </div>   

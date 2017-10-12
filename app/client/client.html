@@ -1,0 +1,130 @@
+<div class="navbar-wrapper">
+    <div class="container-fluid">
+        <nav class="navbar navbar-fixed-top">
+            <div class="container">
+                <div id="navbar" class="navbar-collapse collapse">
+                    <!--<ul class="nav navbar-nav">
+                        <li class="active"><a href="#" class="">Home</a></li>
+                    </ul>-->
+                    <ul class="nav navbar-nav pull-right">
+                        <li><a class="">Signed in as {{user_name}}</a></li>
+                        <li class=""><a href="" ng-click="logout()">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>    
+<div class="row" style="margin-top:60px">
+    <div class="col-xs-6 col-sm-2 col-md-2">
+        <a href="" class="btn btn-lg btn-primary btn-block" ng-click="open()" style="margin: 20px 10px;">Feedback/Complaints</a>
+        <a href="" class="btn btn-lg btn-primary btn-block" ng-show="showsummery" ng-click="show()" style="margin: 20px 10px;">Summery</a>
+    </div>
+    <div class="col-xs-6 col-sm-8 col-md-8">
+         <script type="text/ng-template" id="myModalContent.html">
+            <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="col-md-12 row" style="padding:0px;margin-bottom:10px;">  
+                            <div class="col-md-2">
+                                <img src="http://dinus.org/img/fakultas/FIK/cs/cs.svg">
+                                <div style="margin-left:30px;">
+                                    <img src="http://dinus.org/img/fakultas/FIK/cs/cs.png" width="70px" height="70px" class="img-circle" style="border:3px solid #052C52;margin-left: 190px">
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <hr>
+                                <p style="padding-left:132px;font-size:1.3em;"><strong>Admin</strong></p>
+                            </div>                  
+                        </div>
+                        <form name="form" ng-submit="sendmsg()" role="form">
+                             <table class="table">
+                                <tr>
+                                    <td>
+                                        <input type="email" class="form-control"  id="username" ng-model="user_email" placeholder="Your e-mail" disabled>
+                                    </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                      <div class="form-group" ng-class="{ 'has-error': form.subject.$dirty && form.subject.$error.required }">
+                                            <input type="text" name="subject" id="Text1" class="form-control" ng-model="user_sub" placeholder="Subject" required />
+                                            <span ng-show="form.subject.$dirty && form.subject.$error.required" class="help-block"> Subject is required</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-group" ng-class="{ 'has-error': form.message.$invalid && form.message.$pristine }">
+                                        <textarea class="form-control" rows="3" id="message" ng-model="user_message" ng-required ="true" placeholder="Message text . . ."></textarea>
+                                        <span ng-show="form.message.$invalid && form.message.$pristine" class="help-block"> Message is required</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-danger btn-sm" style="width: 100%;"><i class="fa fa-envelope-o" style="padding-right: 5px;"></i> Send</button>
+                                        <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>                   
+                </div>
+         </script>
+    </div>  
+    <div class="col-md-6" ng-show = "showchat">
+        <div class="panel panel-primary" style="margin: 18px 0px 0px 0px;">
+            <div class="panel-heading" style="padding:0 0 0 8px;">
+                <span class="glyphicon glyphicon-user"></span>
+                <h6 class="panel-title" style="display:inline;">{{firstname}}{{lastname}}</h6>
+                <div class="btn-group btn-group-xs pull-right">
+                  <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-lock"></span></button>
+                  <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-cog"></span></button>
+                  <button type="button" class="btn btn-primary" ng-click="hidechat()"><span class="glyphicon glyphicon-remove"></span></button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body" style="padding:0 4px;">
+                <div class="row">
+                  <div class="col-xs-12" style="max-height:300px;max-width:100%;overflow-y:auto;overflow-x:hidden;">
+                    <table class="table table-hover table-condensed" style="">
+                      <!--<tr ng-hide="chatMessages.length === 0" ng-repeat="chat in chatMessages | orderBy:origDt | reverse"
+                          style="min-width:100%;max-width:100%;width:100%;">-->
+                        <tr ng-hide="chatMessages.length === 0" ng-repeat="chat in chatMessages"
+                          style="min-width:100%;max-width:100%;width:100%;">
+
+                            <!--<td><img src="{{chat.icon}}" alt="" style="margin-top:8px;"/></td>-->
+                            <td>
+                              <h6>{{chat.usr_username}}</h6>
+                            </td>
+                            <td>
+                            <p class="word-wrap:break-word"><small>{{chat.usr_message}}</small></p>
+                            </td>
+                        </tr>
+                      <tr ng-show="chatMessages.length === 0">
+                        <td>
+                          <p>Nothin' here. <strong>Say something!</strong></p>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <form>
+                  <div class="input-group input-group-sm">
+                    <span class="input-group-addon">
+                      <img src="http://placehold.it/16x16" alt="" />
+                    </span>
+                    <input type="text" class="form-control" ng-model="newChatMsg" placeholder="..."/>
+                    <span class="input-group-btn">
+                      <button class="btn btn-primary" type="submit" ng-click="addChat()">Send</button>
+                    </span>
+                  </div>
+                </form>
+            </div>
+        </div>    
+    </div>  
+
+</div> 
+               
