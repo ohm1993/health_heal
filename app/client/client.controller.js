@@ -10,15 +10,6 @@ var app = angular.module('myApp.view3', ['ngRoute'])
 }]);
 
 app.controller('ClientController', function($firebaseObject, $firebaseArray,toastr,$scope,$location,user_data,$uibModal) {	 
-	 //var user = firebase.auth().currentUser;
-	 /**if(user){
-	 	console.log("user is signed in");
-	 	 user_data.getuserData(user.email).then(function(data) {
-           $scope.user_name = data.firstname;
-        });
-	 }else{
-	 	//$location.path('/login');
-	 }**/
    var usr;
    firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
@@ -159,6 +150,5 @@ app.controller('ModalInstanceCtrl',function($scope, $uibModalInstance,$firebaseO
                     $uibModalInstance.dismiss('cancel');
                 }
             });
-  }	
-   
+  }	   
 });
